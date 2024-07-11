@@ -1,0 +1,6 @@
+conda activate streamlit_apps
+
+conda install graphviz matplotlib numpy pandas plotly requests streamlit typing-extensions
+
+pip install streamlit_timeline streamlit-player 
+
