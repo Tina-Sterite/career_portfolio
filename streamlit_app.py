@@ -1,7 +1,6 @@
-
-import streamlit as st 
+import streamlit as st
 from constant import *
-import numpy as np 
+import numpy as np
 import pandas as pd
 from PIL import Image
 from streamlit_timeline import timeline
@@ -14,177 +13,134 @@ import io
 import matplotlib.pyplot as plt
 import streamlit.components.v1 as components
 from graph_builder import *
-#import tensorflow as tf
 from streamlit_player import st_player
 
-st.set_page_config(page_title='mehul gupta\'s portfolio' ,layout="wide",page_icon='👨‍🔬')
+# Set page configuration
+st.set_page_config(page_title="Tina Sterite's Portfolio", layout="wide", page_icon='👩🏻‍🔬')
+# Custom CSS to change the sidebar button font size
+custom_css = """
+<style>
+    .st-emotion-cache-1lxzorm.ef3psqc12 {
+        font-size: .9rem !important; /* Adjust font size as needed */
+        padding: 3px 5px !important; /* Adjust padding as needed */
+        width: 200px; /*this one is controlling button width */
+    }
+    .st-emotion-cache-187vdiz.e1nzilvr4 {
+        font-size: .9rem !important; /* Adjust font size as needed */
+        padding: 3px 5px !important; /* Adjust padding as needed */
+        width: 200px; 
+    }
+    .st-emotion-cache-1dfdf75.e1f1d6gn2 {
+        font-size: .9rem !important; /* Adjust font size as needed */
+        padding: 3px 5px !important; /* Adjust padding as needed */
+        width: 200px; /*this one adjusted font for Visit my LinkedIn Page*/
+    }
+    .element-container.st-emotion-cache-nmzwn.e1f1d6gn4 {
+        font-size: .9rem !important; /* Adjust font size as needed */
+        padding: 3px 5px !important; /* Adjust padding as needed */
+        width: 200px; /*this one adjusted font for */
+    }
+    .st-emotion-cache-uzeiqp.e1nzilvr4 {
+        font-size: .9rem !important; /* Adjust font size as needed */
+         /*this one adjusted the "about me" section.. the width did but the font doesn't seem affected.. actually linkedin page looks affected*/
+    }
+    .row-widget.stDownloadButton {
+        padding: 10px !important; /* Example style */
+        width: 200px;
+        font-size: .9rem; 
+    } 
+    .eyeqlp52 st-emotion-cache-1u2dcfn.ex0cdmw0 {
+        font-size: .9rem !important; /* Adjust font size as needed */
+        padding: 3px 5px !important; /* Adjust padding as needed */
+        width: 200px; /*this one adjusted font for  - font doesn't appear to affect anything*/ 
+    }
+</style>
+ """
 
-st.sidebar.markdown(info['Stackoverflow_flair'],unsafe_allow_html=True)
+ # Inject the custom CSS into the Streamlit app
+st.markdown(custom_css, unsafe_allow_html=True)
 
-st.header('My Debut book on Generative AI is out !!')
-st.info("""LangChain in your Pocket: Beginner's Guide to Building Generative AI Applications using LLMs""")
+# Sidebar content
+st.sidebar.image("images/profile_pic.jpeg", caption="Tina Sterite", width=200)
 
-st.image('images/book.png')
 
-with st.expander("Book details"):
-    st.image('images/amazon.png')
-    st.markdown(book_details,unsafe_allow_html=True)
-with st.expander("How to buy?"):
-    for a,b in books.items():
-            st.markdown("""<a href={}><b><u>{}</b></u></a>""".format(b,a),unsafe_allow_html=True)
-            
+# Sidebar contact and resume download
+st.sidebar.caption('Wish to connect?')
+#contact
+st.sidebar.write('📧: tsterite@gmail.com')
+#linkedIn
+st.sidebar.markdown("""
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="tina-s-974409b" data-version="v1">
+    <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/tina-s-974409b?trk=profile-badge">Visit my LinkedIn Page</a>
+</div>
+""", unsafe_allow_html=True)
+#linkedIn recommendations
+st.sidebar.markdown('<a href="https://www.linkedin.com/in/tina-s-974409b/details/recommendations/" target="_blank">Visit my LinkedIn Recommendations</a>', unsafe_allow_html=True)
+pdfFileObj = open('pdfs/Resume_DSterite.pdf', 'rb')
+st.sidebar.download_button('Download resume', pdfFileObj, file_name='Resume_DSterite.pdf', mime='application/pdf')
+pdf_url = open('pdfs/common_screening_q_and_a.pdf', 'rb')
+#screening questions - answered
+st.sidebar.download_button('Pre-screening Questions - Answered', pdf_url, file_name='common_screening_q_and_a.pdf', mime='application/pdf')
+st.sidebar.image("images/PCEP.png", caption="PCEP - Certified Entry-Level Python Programmer", width=150)
+
+
+
+# About me section
 st.subheader('About me')
 st.write(info['Brief'])
+
+# Career snapshot
 st.subheader('Career snapshot')
-  
 with st.spinner(text="Building line"):
     with open('timeline.json', "r") as f:
         data = f.read()
-        timeline(data, height=500)
+        start = "2023-12-31"
+        end = "1993-08-01"
+        timeline(data, height=400)
 
-
+# Skills & Tools section
 st.subheader('Skills & Tools ⚒️')
 def skill_tab():
-    rows,cols = len(info['skills'])//skill_col_size,skill_col_size
+    rows, cols = divmod(len(info['skills']), skill_col_size)
+    if cols:
+        rows += 1
     skills = iter(info['skills'])
-    if len(info['skills'])%skill_col_size!=0:
-        rows+=1
-    for x in range(rows):
+    for _ in range(rows):
         columns = st.columns(skill_col_size)
-        for index_ in range(skill_col_size):
+        for index in range(skill_col_size):
             try:
-                columns[index_].button(next(skills))
-            except:
+                skill = next(skills)
+                columns[index].button(skill)
+            except StopIteration:
                 break
+
 with st.spinner(text="Loading section..."):
     skill_tab()
 
-
+# Education section
 st.subheader('Education 📖')
 
-fig = go.Figure(data=[go.Table(
-    header=dict(values=list(info['edu'].columns),
-                fill_color='paleturquoise',
-                align='left',height=65,font_size=20),
-    cells=dict(values=info['edu'].transpose().values.tolist(),
-               fill_color='lavender',
-               align='left',height=40,font_size=15))])
+# fig = go.Figure(data=[go.Table(
+#     header=dict(values=list(info['edu'].columns),
+#                 fill_color='paleturquoise',
+#                 align='left',height=50,font_size=20),
+#     cells=dict(values=info['edu'].transpose().values.tolist(),
+#                fill_color='lavender',
+#                align='left',height=40,font_size=15))])
 
-fig.update_layout(width=750, height=400)
-st.plotly_chart(fig)
-st.subheader('Research Papers 📝')
+# fig.update_layout(width=750, height=400)
+# st.plotly_chart(fig)
 
-def plot_bar():
-    
-    st.info('Comparing Brute Force approach with the algorithms')
-    temp1 = rapid_metrics.loc[['Brute-Force_Printed','printed'],:].reset_index().melt(id_vars=['category'],value_vars=['precision','recall','f1_score'],var_name='metrics',value_name='%').reset_index()
-    
-    temp2 = rapid_metrics.loc[['Brute-Force_Handwritten','handwritten'],:].reset_index().melt(id_vars=['category'],value_vars=['precision','recall','f1_score'],var_name='metrics',value_name='%').reset_index()
-    
-    cols = st.columns(2)
-    
-    fig = px.bar(temp1, x="metrics", y="%", 
-             color="category", barmode = 'group')
-     
-    cols[0].plotly_chart(fig,use_container_width=True)
-    
-    fig = px.bar(temp2, x="metrics", y="%", 
-             color="category", barmode = 'group')
-    cols[1].plotly_chart(fig,use_container_width=True)
-    
-    
+df = info['edu']
 
-def image_and_status_loader(image_list,index=0):
-    if index==0:
-        img = Image.open(image_list[0]['path'])
-        st.image(img,caption=image_list[0]['caption'],width=image_list[0]['width'])
-       
-    else:
-        st.success('C-Cube algorithm for printed prescriptions')
-        rapid_metrics.loc[['Brute-Force_Printed','printed'],:].plot(kind='bar')
-        cols = st.columns(3)
-        for index_,items in enumerate(image_list[0]):
-            cols[index_].image(items['path'],caption=items['caption'],use_column_width=True)
-     
-        
-        st.success('3 step filtering algorithm for handwritten algorithms')
-        cols = st.columns(3)
-        for index_,items in enumerate(image_list[1]):
-            cols[index_].image(items['path'],caption=items['caption'],use_column_width=True)
-        
-        plot_bar()
-        
-        
+# Display the DataFrame as a table using Streamlit
+#st.style.hide_index()
+st.dataframe(df,hide_index=True)
 
-def paper_summary(index):
-    st.markdown('<h5><u>'+paper_info['name'][index]+'</h5>',unsafe_allow_html=True)
-    st.caption(paper_info['role'][index])
-    st.caption(paper_info['journal'][index]+' , '+paper_info['publication'][index]+' , '+paper_info['year'][index])
-    with st.expander('detailed description'):
-        with st.spinner(text="Loading details..."):
-                st.write(paper_info['Summary'][index])
-                pdfFileObj = open('pdfs/{}'.format(paper_info['file'][index]), 'rb')
-                image_and_status_loader(paper_info['images'][str(index)], index)
-                if index==0:
-                    rpa_metrics['time_improvement'] = rpa_metrics['non-ds']-rpa_metrics['ds']
-                    st.markdown('**Time taken per order involving Rx in seconds** (green indicates improvements from baseline)')
-                    cols = st.columns(3)
-                    for index_, row in rpa_metrics.iterrows():
-                        cols[index_].metric(row['category'],str(row['ds'])+'s',delta=str(round(row['time_improvement'],1))+'s' )
-                st.download_button('download paper',pdfFileObj,file_name=paper_info['file'][index],mime='pdf')
-    
-
-
-paper_summary(0)
-paper_summary(1)
-
-st.subheader('Achievements 🥇')
-achievement_list = ''.join(['<li>'+item+'</li>' for item in info['achievements']])
-st.markdown('<ul>'+achievement_list+'</ul>',unsafe_allow_html=True)
-
-
-st.subheader('Medium Profile ✍️')
-st.markdown("""<a href={}> access full profile here</a>""".format(info['Medium']),unsafe_allow_html=True)
-
-try:
-        page1,page2 = requests.get(info['Medium']), requests.get(info['publication_url'])
-        
-        followers = re.findall('(\d+\.\d+[kK]?) Followers',page1.text)[0]
-        pub_followers = re.findall('Followers (?:\w+\s+){4}(\d+)',re.sub('\W+',' ', page2.text ))[0]
-        
-        cols = st.columns(2)
-        cols[0].metric('Followers',followers)
-        cols[1].metric('Publication followers',pub_followers)
-except:
-    pass
-
-with st.expander('read my latest blogs below'):
-    components.html(embed_component['medium'],height=500)
-
-st.subheader('Youtube ▶️')
-st.markdown("""<a href={}> access channel here</a>""".format(info['youtube_url']),unsafe_allow_html=True)
-page1,page2 = requests.get(info['youtube_url']), requests.get(info['youtube_about'])
-subs = re.findall('(\d+\.\d+[kK]?) subscribers',page1.text)[0]
-videos = re.findall( r'"videosCountText".*?"text":"(\d+)"',page1.text)[0]
-
-cols = st.columns(2)
-cols[0].metric('Subscribers',subs)
-cols[1].metric('Videos',videos)
-        
-st.subheader('Daily routine as Data Scientist')
+# Daily routine as Data Scientist
+st.subheader('Daily routine as Business Intelligence Engineer')
 st.graphviz_chart(graph)
 
-st.sidebar.caption('Wish to connect?')
-st.sidebar.write('📧: mehulgupta2016154@gmail.com')
 
-pdfFileObj = open('pdfs/mehul_gupta_resume.pdf', 'rb')
-st.sidebar.download_button('download resume',pdfFileObj,file_name='mehul_gupta_resume.pdf',mime='pdf')
-
-
-
-        
-
-        
-        
     
     
