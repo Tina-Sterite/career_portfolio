@@ -2,10 +2,10 @@ import graphviz as graphviz
 
 graph = graphviz.Digraph()
 graph.edge('9AM, start','check mails')
-graph.edge('check mails','check metrics for pipelines')
-graph.edge('check metrics for pipelines','resolve issues',label='If bug found')
+graph.edge('check mails','check Active Batch, Tableau, and Alteryx job runs')
+graph.edge('check Active Batch, Tableau, and Alteryx job runs','resolve issues',label='If bug found')
 graph.edge('resolve issues','10AM, attend scrum')
-graph.edge('check metrics for pipelines','10AM, attend scrum')
+graph.edge('check Active Batch, Tableau, and Alteryx job runs','10AM, attend scrum')
 graph.edge('10AM, attend scrum','work on assigned work')
 graph.edge('work on assigned work','Tableau',label='usually')
 graph.edge('work on assigned work','SQL Queries',label='Almost everyday')
