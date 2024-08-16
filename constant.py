@@ -13,10 +13,10 @@ info = {'name':'Tina Sterite',
         'photo':{'path':'abc.jpg','width':150},
         "Mobile": "6178406565",
         "Email": "tsterite@gmail.com",
-        "LinkedIn": "https://www.linkedin.com/in/tina-s-974409b/",
+        "LinkedIn": "https://www.linkedin.com/in/tina-sterite/",
         "City": "East Bridgewater, MA",
         'edu':pd.DataFrame(edu,columns=['Qualification','Year','Institute','Score']),
-        "Stackoverflow_flair": "<a href=\"https://www.linkedin.com/in/tina-s-974409b\"></a>",
+        "Stackoverflow_flair": "<a href=\"https://www.linkedin.com/in/tina-sterite\"></a>",
                 
         "skills": ["Aleryx",
                    "Oracle SQL",
@@ -43,7 +43,7 @@ paper_info = {'name':['x','x'],'publication':['x','x'],'journal':['x','x'],'year
 skill_col_size = 3
 
 embed_component= {'linkedin':"""
-<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="tina-s-974409b" data-version="v1">
-    <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/tina-s-974409b?trk=profile-badge">Tina S.</a>
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="tina-sterite" data-version="v1">
+    <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/tina-sterite?trk=profile-badge">Tina Sterite</a>
 </div>
 """}

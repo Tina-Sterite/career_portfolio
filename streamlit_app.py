@@ -70,12 +70,12 @@ st.sidebar.caption('Wish to connect?')
 st.sidebar.write('📧: tsterite@gmail.com')
 #linkedIn
 st.sidebar.markdown("""
-<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="tina-s-974409b" data-version="v1">
-    <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/tina-s-974409b?trk=profile-badge">Visit my LinkedIn Page</a>
+<div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="tina-sterite" data-version="v1">
+    <a class="badge-base__link LI-simple-link" href="https://www.linkedin.com/in/tina-sterite?trk=profile-badge">Visit my LinkedIn Page</a>
 </div>
 """, unsafe_allow_html=True)
 #linkedIn recommendations
-st.sidebar.markdown('<a href="https://www.linkedin.com/in/tina-s-974409b/details/recommendations/" target="_blank">Visit my LinkedIn Recommendations</a>', unsafe_allow_html=True)
+st.sidebar.markdown('<a href="https://www.linkedin.com/in/tina-sterite/details/recommendations/" target="_blank">Visit my LinkedIn Recommendations</a>', unsafe_allow_html=True)
 pdfFileObj = open('pdfs/Resume_DSterite.pdf', 'rb')
 st.sidebar.download_button('Download resume', pdfFileObj, file_name='Resume_DSterite.pdf', mime='application/pdf')
 pdf_url = open('pdfs/common_screening_q_and_a.pdf', 'rb')
