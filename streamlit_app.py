@@ -95,7 +95,7 @@ with st.spinner(text="Building line"):
     with open('timeline.json', "r") as f:
         data = f.read()
         start = "2023-12-31"
-        end = "1993-08-01"
+        end = "2015-09-01"
         timeline(data, height=400)
 
 # Skills & Tools section
