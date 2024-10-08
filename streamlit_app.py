@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import streamlit.components.v1 as components
 from graph_builder import *
 from streamlit_player import st_player
+from datetime import datetime
 
 # Set page configuration
 st.set_page_config(page_title="Tina Sterite's Portfolio", layout="wide", page_icon='👩🏻‍🔬')
@@ -76,8 +77,8 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 #linkedIn recommendations
 st.sidebar.markdown('<a href="https://www.linkedin.com/in/tina-sterite/details/recommendations/" target="_blank">Visit my LinkedIn Recommendations</a>', unsafe_allow_html=True)
-pdfFileObj = open('pdfs/Resume_DSterite.pdf', 'rb')
-st.sidebar.download_button('Download resume', pdfFileObj, file_name='Resume_DSterite.pdf', mime='application/pdf')
+pdfFileObj = open('pdfs/Resume_DSterite_2.pdf', 'rb')
+st.sidebar.download_button('Download resume', pdfFileObj, file_name='Resume_DSterite_2.pdf', mime='application/pdf')
 pdf_url = open('pdfs/common_screening_q_and_a.pdf', 'rb')
 #screening questions - answered
 st.sidebar.download_button('Pre-screening Questions - Answered', pdf_url, file_name='common_screening_q_and_a.pdf', mime='application/pdf')
@@ -89,13 +90,27 @@ st.sidebar.image("images/PCEP.png", caption="PCEP - Certified Entry-Level Python
 st.subheader('About me')
 st.write(info['Brief'])
 
+st.markdown(
+    """
+    <style>
+    .stSpinner {
+        display: flex;
+        justify-content: flex-start;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Career snapshot
 st.subheader('Career snapshot')
 with st.spinner(text="Building line"):
     with open('timeline.json', "r") as f:
         data = f.read()
-        start = "2023-12-31"
-        end = "2015-09-01"
+        #start = "2015-09-01"
+        #end = "2023-12-31"
+        start_date = datetime.strptime("2015-09-01", "%Y-%m-%d")
+        end_date = datetime.strptime("2023-12-31", "%Y-%m-%d")
         timeline(data, height=400)
 
 # Skills & Tools section
