@@ -1,7 +1,8 @@
 import pandas as pd
 import graphviz as graphviz
 
-edu = [ ["AI Powered Data Analytics","2024","Network Technology Academy Institute","TBD"],
+edu = [["Computer Science Transfer - Data Science","2025","Massasoit Community College","TBD"], 
+       ["AI Powered Data Analytics","2024","Network Technology Academy Institute","TBD"],
        ["Specialized Studies Program, Business Intelligence and Data Warehousing",
       "2017",
       "University of California, Irvine Division of Continuing Education ",
@@ -9,7 +10,7 @@ edu = [ ["AI Powered Data Analytics","2024","Network Technology Academy Institut
       ]
 
 info = {'name':'Tina Sterite', 
-        'Brief':'My name is Tina Sterite and I have 8 years of experience working in the business intelligence and data space, and over 20 years in the IT space.  My wide range of experience in the IT and data spaces, collaboration across teams (business and IT) experience, as well as my technical aptitude will be a great value to your team.\n\n I have 8 years working with Tableau, Alteryx, SSRS (5yr) and writing SQL to create data sources for reporting and creating the reports themselves.  I have also had exposure to Power BI and Azure Data Factory.\n\nIn addition to curating the data sources for reporting; I’ve worked extensively over the years with data warehouse and application development teams to either create, locate, or correct data from source systems for reporting purposes.  I have experience working with team members across the globe and have made many friends in these colleagues.\n\nCurrently, I am enrolled in an AI Powered Data Analytics course with NTAi.  I have obtained the PCEP certification and am currently working on various Python projects using VS Code, Copilot, and REST APIs.  I’m excited to bring these new skills to the table.\n\nI LOVE what I do and would love the opportunity to bring my talent to your team and to expand and grow within your team.  Please feel free to connect!',
+        'Brief':'My name is Tina Sterite. An innovative Business Intelligence Engineer with a passion for transforming complex data into actionable insights. With over 15 years of experience in data analytics, report development, and project management, I specialize in leveraging tools like Tableau, Alteryx, and SQL to drive business decisions. My expertise spans from traditional BI to cutting-edge AI-powered analytics, allowing me to bridge the gap between technical implementation and strategic business needs. As a lifelong learner currently pursuing further education in Data Science, committed to staying at the forefront of technology trends. My goal is to empower organizations through data-driven solutions, enhancing efficiency, visibility, and decision-making processes while facilitating collaboration and fostering an enthusiastic work environment.\n\nMy unique value lies in the ability to merge technical prowess with business applications and operations, driving impactful business decisions through comprehensive analysis and reporting. This proficiency extends across various industries, leveraging deep knowledge in Oracle SQL, PostgreSQL, and advanced BI tools to enhance data integrity and reporting capabilities. By streamlining processes and developing innovative solutions, my track record showcases a profound impact on operational efficiency, stakeholder visibility, and proactive issue resolution in a collaborative team environment.',
         'photo':{'path':'abc.jpg','width':150},
         "Mobile": "6178406565",
         "Email": "tsterite@gmail.com",
