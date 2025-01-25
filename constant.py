@@ -1,7 +1,7 @@
 import pandas as pd
 import graphviz as graphviz
 
-edu = [["Computer Science Transfer - Data Science","2025","Massasoit Community College","TBD"], 
+edu = [["Computer Science Transfer - Data Science","2027","Massasoit Community College","TBD"], 
        ["AI Powered Data Analytics","2024","Network Technology Academy Institute","TBD"],
        ["Specialized Studies Program, Business Intelligence and Data Warehousing",
       "2017",
