@@ -1,6 +1,7 @@
 name: career_portfolio
 channels:
   - conda-forge
+  - defaults
 dependencies:
   - conda
   - pip

@@ -77,8 +77,8 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 #linkedIn recommendations
 st.sidebar.markdown('<a href="https://www.linkedin.com/in/tina-sterite/details/recommendations/" target="_blank">Visit my LinkedIn Recommendations</a>', unsafe_allow_html=True)
-pdfFileObj = open('pdfs/Resume_DSterite_2.pdf', 'rb')
-st.sidebar.download_button('Download resume', pdfFileObj, file_name='Resume_DSterite_2.pdf', mime='application/pdf')
+pdfFileObj = open('pdfs/Resume_DSterite.pdf', 'rb')
+st.sidebar.download_button('Download resume', pdfFileObj, file_name='Resume_DSterite.pdf', mime='application/pdf')
 pdf_url = open('pdfs/common_screening_q_and_a.pdf', 'rb')
 #screening questions - answered
 st.sidebar.download_button('Pre-screening Questions - Answered', pdf_url, file_name='common_screening_q_and_a.pdf', mime='application/pdf')
